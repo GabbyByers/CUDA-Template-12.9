@@ -1,17 +1,16 @@
 #include "kernel.cuh"
 
-__global__ void addKernel(int* c, const int* a, const int* b)
+__global__ void addKernel(int* c, int* a, int* b)
 {
     int i = threadIdx.x;
     c[i] = a[i] + b[i];
 }
 
-void addWithCuda(int* c, const int* a, const int* b, unsigned int size)
+void addWithCuda(int* c, int* a, int* b, unsigned int size)
 {
     int* dev_a = 0;
     int* dev_b = 0;
     int* dev_c = 0;
-    cudaError_t cudaStatus;
 
     cudaSetDevice(0);
 
